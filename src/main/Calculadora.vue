@@ -1,28 +1,33 @@
 <template>
-  <div class="calculator">
-    <Display value="displayValue" />
-    <Button label="AC" triple @onClick="clearMemory" />
-    <Button label="/" operation @onClick="setOperation" />
-    <Button label="7" @onClick="addDigit" />
-    <Button label="8" @onClick="addDigit" />
-    <Button label="9" @onClick="addDigit" />
-    <Button label="*" operation @onClick="setOperation" />
-    <Button label="4" @onClick="addDigit" />
-    <Button label="5" @onClick="addDigit" />
-    <Button label="6" @onClick="addDigit" />
-    <Button label="-" operation @onClick="setOperation" />
-    <Button label="1" @onClick="addDigit" />
-    <Button label="2" @onClick="addDigit" />
-    <Button label="3" @onClick="addDigit" />
-    <Button label="+" operation @onClick="setOperation" />
-    <Button label="0" double @onClick="addDigit" />
-    <Button label="." @onClick="addDigit" />
-    <Button label="=" operation @onClick="setOperation" />
-</div>
+
+<Panel :style="{width: '450px' ,height: '780px'}">
+    <Display :value="displayValue" />
+
+    <Button label="AC" @click="clearMemory()" />
+    <Button label="/" @click="setOperation('/')" />
+    <Button label="7" @click="addDigit('7')" />
+    <Button label="8" @click="addDigit('8')" />
+    <Button label="9" @click="addDigit('9')" />
+    <Button label="*" @click="setOperation('*')" />
+    <Button label="4" @click="addDigit('4')" />
+    <Button label="5" @click="addDigit('5')" />
+    <Button label="6" @click="addDigit('6')" />
+    <Button label="-" @click="setOperation('-')" />
+    <Button label="1" @click="addDigit('1')" />
+    <Button label="2" @click="addDigit('2')" />
+    <Button label="3" @click="addDigit('3')" />
+    <Button label="+" @click="setOperation('+')" />
+    <Button label="0" @click="addDigit('0')" />
+    <Button label="." @click="addDigit('.')" />
+    <Button label="=" @click="setOperation('=')" />
+
+<Button label="caluladora wak" class="p-button-raised p-button-rounded" />
+
+</Panel>
+
 </template>
 
 <script>
-import Button from "../components/Button";
 import Display from "../components/Display";
 
 export default {
@@ -35,32 +40,35 @@ export default {
       current: 0,
     };
   },
-  components: { Button, Display },
+  components: { Display },
   methods: {
     clearMemory() {
-      Object.assing(this.$data, this.$options.data());
+      Object.assign(this.$data, this.$options.data());''
     },
     setOperation(operation) {
+      //console.log('Operacao'+operation)
+      //quando é o primeiro número informado operação é setada e o display é resetado
+      //e o valor de current(segundo valor do vetor) é esperado
       if (this.current === 0) {
         this.operation = operation;
         this.current = 1;
         this.clearDisplay = true;
       } else {
         const equals = operation === "=";
-        //const currentOperation = this.operation
-
+        const currentOperation = this.operation;
         try {
           this.values[0] = eval(
-            "${this.values[0]} ${currentOperation} ${this.values[1]}"
+            `${this.values[0]} ${currentOperation} ${this.values[1]}`
           );
         } catch (e) {
-          this.$emit("onError", e);
+          this.$emit("OnError", e);
         }
-        this.valeus[1] = 0;
-
+        //this.historicoCalculos = this.historicoCalculos + "=" +this.values[0];
+        this.values[1] = 0;
+        //setar o número de casas decimais(precisao) da calculadora
         this.displayValue = this.values[0];
-        this.operation - equals ? null : operation;
-        this.current = equals ? null : operation;
+        //this.displayValue = this.values[0];
+        this.operation = equals ? null : operation;
         this.current = equals ? 0 : 1;
         this.clearDisplay = !equals;
       }
@@ -76,7 +84,7 @@ export default {
 
       this.displayValue = displayValue;
       this.clearDisplay = false;
-      this.values[this.current] = displayValue;
+      this.values[this.current] = this.displayValue;
     },
   },
 };
@@ -241,15 +249,4 @@ export default {
   --primary-900: #0d3c61;
 }
 
-.calculator {
-  height: 320px;
-  /*width: 235px;*/
-  width: 500px;
-  border-radius: 5px;
-  overflow: hidden;
-
-  display: grid;
-  grid-template-columns: repeat(4, 25%);
-  grid-template-rows: 1fr 48px 48px 48px 48px 48px;
-}
 </style>

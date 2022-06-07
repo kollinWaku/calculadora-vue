@@ -18,7 +18,7 @@ export default {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding: 20px;
+  padding: 40px;
   font-size: 2.1em;
   overflow: hidden;
 }
