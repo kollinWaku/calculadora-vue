@@ -1,10 +1,7 @@
 <template>
-
   <Panel :style="{ width: '450px', height: '780px' }">
     <Display :value="displayValue" />
-    <div class="Panel">
-    
-</div>
+    <div class="Panel"></div>
 
     <div class="grid">
       <div class="col-9">
@@ -50,24 +47,23 @@
         <Button class="col-12" label="2" @click="addDigit('2')" />
       </div>
       <div class="col-3">
-       <Button class="col-12" label="3" @click="addDigit('3')" />
+        <Button class="col-12" label="3" @click="addDigit('3')" />
       </div>
-      </div>
-      <div class="grid">
-        <!--<div class="col-9">
+    </div>
+    <div class="grid">
+      <!--<div class="col-9">
         <Button class="col-12" label="AC" @click="clearMemory()" />
       </div> -->
-        <div class="col-6">
-          <Button class="col-12" label="0" @click="addDigit('0')" />
-        </div>
-        <div class="col-3">
+      <div class="col-6">
+        <Button class="col-12" label="0" @click="addDigit('0')" />
+      </div>
+      <div class="col-3">
         <Button class="col-12" label="." @click="addDigit('.')" />
-        </div>
-         <div class="col-3">
-           <Button label="=" @click="setOperation('=')" />
-        </div>
-        </div>
-    
+      </div>
+      <div class="col-3">
+        <Button class="col-12" label="=" @click="setOperation('=')" />
+      </div>
+    </div>
   </Panel>
 </template>
 
