@@ -1,30 +1,74 @@
 <template>
 
-<Panel :style="{width: '450px' ,height: '780px'}">
+  <Panel :style="{ width: '450px', height: '780px' }">
     <Display :value="displayValue" />
+    <div class="Panel">
+    
+</div>
 
-    <Button label="AC" @click="clearMemory()" />
-    <Button label="/" @click="setOperation('/')" />
-    <Button label="7" @click="addDigit('7')" />
-    <Button label="8" @click="addDigit('8')" />
-    <Button label="9" @click="addDigit('9')" />
-    <Button label="*" @click="setOperation('*')" />
-    <Button label="4" @click="addDigit('4')" />
-    <Button label="5" @click="addDigit('5')" />
-    <Button label="6" @click="addDigit('6')" />
-    <Button label="-" @click="setOperation('-')" />
-    <Button label="1" @click="addDigit('1')" />
-    <Button label="2" @click="addDigit('2')" />
-    <Button label="3" @click="addDigit('3')" />
-    <Button label="+" @click="setOperation('+')" />
-    <Button label="0" @click="addDigit('0')" />
-    <Button label="." @click="addDigit('.')" />
-    <Button label="=" @click="setOperation('=')" />
-
-<Button label="caluladora wak" class="p-button-raised p-button-rounded" />
-
-</Panel>
-
+    <div class="grid">
+      <div class="col-9">
+        <Button class="col-12" label="AC" @click="clearMemory()" />
+      </div>
+      <div class="col-3">
+        <Button class="col-12" label="/" @click="setOperation('/')" />
+      </div>
+    </div>
+    <div class="grid">
+      <div class="col-3">
+        <Button class="col-12" label="7" @click="addDigit('7')" />
+      </div>
+      <div class="col-3">
+        <Button class="col-12" label="8" @click="addDigit('8')" />
+      </div>
+      <div class="col-3">
+        <Button class="col-12" label="9" @click="addDigit('9')" />
+      </div>
+      <div class="col-3">
+        <Button class="col-12" label="*" @click="setOperation('*')" />
+      </div>
+    </div>
+    <div class="grid">
+      <div class="col-3">
+        <Button class="col-12" label="4" @click="addDigit('4')" />
+      </div>
+      <div class="col-3">
+        <Button class="col-12" label="5" @click="addDigit('5')" />
+      </div>
+      <div class="col-3">
+        <Button class="col-12" label="6" @click="addDigit('6')" />
+      </div>
+      <div class="col-3">
+        <Button class="col-12" label="+" @click="setOperation('+')" />
+      </div>
+    </div>
+    <div class="grid">
+      <div class="col-3">
+        <Button class="col-12" label="1" @click="addDigit('1')" />
+      </div>
+      <div class="col-3">
+        <Button class="col-12" label="2" @click="addDigit('2')" />
+      </div>
+      <div class="col-3">
+       <Button class="col-12" label="3" @click="addDigit('3')" />
+      </div>
+      </div>
+      <div class="grid">
+        <!--<div class="col-9">
+        <Button class="col-12" label="AC" @click="clearMemory()" />
+      </div> -->
+        <div class="col-6">
+          <Button class="col-12" label="0" @click="addDigit('0')" />
+        </div>
+        <div class="col-3">
+        <Button class="col-12" label="." @click="addDigit('.')" />
+        </div>
+         <div class="col-3">
+           <Button label="=" @click="setOperation('=')" />
+        </div>
+        </div>
+    
+  </Panel>
 </template>
 
 <script>
@@ -43,7 +87,8 @@ export default {
   components: { Display },
   methods: {
     clearMemory() {
-      Object.assign(this.$data, this.$options.data());''
+      Object.assign(this.$data, this.$options.data());
+      ("");
     },
     setOperation(operation) {
       //console.log('Operacao'+operation)
@@ -248,5 +293,4 @@ export default {
   --primary-800: #125386;
   --primary-900: #0d3c61;
 }
-
 </style>
